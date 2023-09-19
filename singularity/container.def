@@ -3,7 +3,7 @@ From: angelolab/ark-analysis:latest
 IncludeCmd: yes
 
 %environment
-    export LISTEN_PORT=9999
+    export LISTEN_PORT=9998
 
 %runscript
     jupyter lab --ip=0.0.0.0 --no-browser --port=$LISTEN_PORT --LabApp.default_url="/lab/workspaces/lab?reset" --notebook-dir="/opt/ark-analysis/templates"
