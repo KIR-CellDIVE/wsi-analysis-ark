@@ -1,0 +1,16 @@
+Bootstrap: docker
+From: angelolab/ark-analysis:latest
+IncludeCmd: yes
+
+%environment
+    export LISTEN_PORT=9999
+
+%runscript
+    jupyter lab --ip=0.0.0.0 --no-browser --port=$LISTEN_PORT --LabApp.default_url="/lab/workspaces/lab?reset" --notebook-dir="/opt/ark-analysis/templates"
+
+%labels
+    Author jonas.mackerodt@kennedy.ox.ac.uk
+    Version v0.0.1
+
+%help
+    This is a singularity container serving the ark-analysis toolbox (https://github.com/angelolab/ark-analysis)
