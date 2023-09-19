@@ -81,7 +81,7 @@ Then, we create two bash scripts in `~/.local/bin` to make starting the containe
 ```bash
 echo "#! /bin/bash
 ## run wsi-analysis-ark container providing the ark-analysis toolbox
-[ -d "/mnt" ] && singularity \"\$@\" run --bind /mnt:/opt/analysis/drives --bind /:/opt/analysis/host $HOME/builds/wsi-analysis-ark/singularity/wsi_analysis_ark.sif || singularity run \"\$@\" --bind /:/opt/analysis/host $HOME/builds/wsi-analysis-ark/singularity/wsi_analysis_ark.sif" > ~/.local/bin/wsi-analysis-ark
+[ -d "/mnt" ] && singularity \"\$@\" run --bind /mnt:/opt/ark-analysis/templates/drives --bind /:/opt/ark-analysis/templates/host $HOME/builds/wsi-analysis-ark/singularity/wsi_analysis_ark.sif || singularity run \"\$@\" --bind /:/opt/ark-analysis/templates/host $HOME/builds/wsi-analysis-ark/singularity/wsi_analysis_ark.sif" > ~/.local/bin/wsi-analysis-ark
 ```
 
 Lastly, we make these two bash scripts executable
@@ -116,7 +116,7 @@ wsi-analysis-ark
 >```
 >
 
-You should now see a link similar to `http://127.0.0.1:9999/lab/workspaces/lab?reset?token=...`, copy it and open it in your preferred browser. Then, in the left sidebar navigate you can open one of analysis notebooks. Since the notebooks are read-only, save a copy and open it before preceeding with your analysis. If you are following one from the [whole slide segmentation](https://github.com/KIR-CellDIVE/wsi-segmentation) pipeline you should start with the [2 - "Pixel clustering with pixie" notebook](https://github.com/angelolab/ark-analysis#2-pixel-clustering-with-pixie) of the `ark-analysis` toolbox.
+You should now see a link similar to `http://127.0.0.1:9998/lab/workspaces/lab?reset?token=...`, copy it and open it in your preferred browser. Then, in the left sidebar navigate you can open one of analysis notebooks. Since the notebooks are read-only, save a copy via `File->Download` in the top taskbar and open from the left sidebar before preceding with your analysis. If you are following one from the [whole slide segmentation](https://github.com/KIR-CellDIVE/wsi-segmentation) pipeline you should start with the [2 - "Pixel clustering with pixie" notebook](https://github.com/angelolab/ark-analysis#2-pixel-clustering-with-pixie) of the `ark-analysis` toolbox.
 
 ## How to cite
 
