@@ -67,7 +67,7 @@ Next, we build a singularity container called `wsi_analysis_ark.sif` based on de
 
 ```bash
 cd wsi-segmentation/singularity \
-&& sudo singularity build wsi_analysis_ark.sif container.def
+&& sudo singularity build wsi_analysis_ark.sif Singularity.def
 ```
 
 In order to make it easier to run the container in the future we create to bash scripts `wsi-analysis-ark` in `~/.local/bin` that can simply be called from anywhere inside the console. Adapt these commands if you decided to download and build the container in a different directory. (Skip this step if you'd rather start the containers directly yourself). 
