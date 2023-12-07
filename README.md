@@ -66,7 +66,7 @@ mkdir -p ~/builds \
 Next, we build a singularity container called `wsi_analysis_ark.sif` based on definition file `container.def`:
 
 ```bash
-cd wsi-segmentation/singularity \
+cd wsi-analysis-ark/singularity \
 && sudo singularity build wsi_analysis_ark.sif Singularity
 ```
 
