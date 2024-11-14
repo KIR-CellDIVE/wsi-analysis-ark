@@ -54,7 +54,7 @@ install it
 sudo apt install ./singularity-ce_${SINGULARITY_VER}-${UBUNTU_CODENAME}_amd64.deb
 ```
 
-### Build whole slide image segmentation container
+### Build container
 
 We start by creating a `builds` folder in the HOME `~` directory and cloning/downloading this repository from GitHub: 
 
