@@ -1,58 +1,11 @@
 # Whole slide image analysis of Cell DIVE multiplex microscopy images using `ark-analysis` toolbox
 
-This repository provides an easy to install and deploy `Singularity` container for the `ark-analysis` toolbox. This is part of the [DIVE-MAP: Cell DIVE Multiplex Analysis Pipeline](https://github.com/KIR-CellDIVE/DIVE-MAP) and aims to follow the same installation and deployment process like other tools in this pipeline ([whole slide segmentation](https://github.com/KIR-CellDIVE/wsi-segmentation)).
+This repository provides an easy to install and deploy `Apptainer` container for the `ark-analysis` toolbox. This is part of the [DIVE-MAP: Cell DIVE Multiplex Analysis Pipeline](https://github.com/KIR-CellDIVE/DIVE-MAP) and aims to follow the same installation and deployment process like other tools in this pipeline ([whole slide segmentation](https://github.com/KIR-CellDIVE/wsi-segmentation)).
 
 ## Installation
 
-If you have already installed `Windows Subsystem for Linux` [WSL](https://learn.microsoft.com/en-us/windows/wsl/install) and `Singularity` as part of the installation procedure for the [whole slide segmentation](https://github.com/KIR-CellDIVE/wsi-segmentation) pipeline you can skip ahead to [Build whole slide image segmentation container](#build-whole-slide-image-segmentation-container).
-
-### Windows
-If you are using Windows make sure you have `Windows Subsystem for Linux` [WSL](https://learn.microsoft.com/en-us/windows/wsl/install).
-
-Following [this](https://learn.microsoft.com/en-us/windows/wsl/install) official guide, install `WSL` and create a new `Ubuntu`-based `WSL` environment called `Ubuntu` by opening `PowerShell` and simply running:
-
-```bash
-wsl --install -d Ubuntu
-```
-
-It will ask you to create a user account and set a password. Make sure that you keep note of these as they are not linked to your Windows login. The next step assumes you have set the user name to be `ubuntu`, so adjust the following command if you chose a different username.
-
-To enter the newly created `WSL` environment `Ubuntu` as the user `ubuntu` you set in the previous step run the following in the `PowerShell`:
-
-```bash
-wsl -d Ubuntu -u ubuntu
-```
-
-### System preparation and installing Singularity 
-#### WSL/Ubuntu or native Ubuntu
-The following instructions assume that you are either running Ubuntu 20.04/22.04 LTS on either WSL (see instructions above) or natively and you have access to the console (see previous step for WSL).
-
-If on Windows and you have not yet entered the previously created `WSL` environment, run the following to enter `Ubuntu` `WSL` environment as user `ubuntu`:
-
-```bash
-wsl -d Ubuntu -u ubuntu
-```
-
-First, we have to install `Singularity` to deploy and run containers. Make sure you are executing the following commands in order.
-
-We start by setting the version of `SingularityCE` we will be installing and determining the name and version of our Ubuntu distribution:
-
-```bash
-SINGULARITY_VER="3.11.4"
-UBUNTU_CODENAME=$( lsb_release -cs )
-UBUNTU_VERSION=$( lsb_release -rs )
-```
-
-Next, we download `SingularityCE`,
-```bash
-mkdir -p ~/Downloads \
-&& cd ~/Downloads \
-&& wget https://github.com/sylabs/singularity/releases/download/v${SINGULARITY_VER}/singularity-ce_${SINGULARITY_VER}-${UBUNTU_CODENAME}_amd64.deb
-```
-install it
-```bash
-sudo apt install ./singularity-ce_${SINGULARITY_VER}-${UBUNTU_CODENAME}_amd64.deb
-```
+### Setup system for building the whole-slide image analysis container
+Please follow the steps outlined here [here](https://github.com/KIR-CellDIVE/wsi-analysis) to prepare your computer for building and running the whole-slide image analysis container. You only have to setup you system once to build the various containers that are part of [DIVEMAP](https://github.com/KIR-CellDIVE/DIVE-MAP)
 
 ### Build container
 
@@ -63,11 +16,11 @@ mkdir -p ~/builds \
 && cd ~/builds \
 && git clone https://github.com/KIR-CellDIVE/wsi-analysis-ark.git
 ```
-Next, we build a singularity container called `wsi_analysis_ark.sif` based on definition file `container.def`:
+Next, we build a Apptainer container called `wsi_analysis_ark.sif` based on definition file `Apptainer`:
 
 ```bash
 cd wsi-analysis-ark/singularity \
-&& sudo singularity build wsi_analysis_ark.sif Singularity
+&& sudo singularity build wsi_analysis_ark.sif Apptainer
 ```
 
 In order to make it easier to run the container in the future we create to bash scripts `wsi-analysis-ark` in `~/.local/bin` that can simply be called from anywhere inside the console. Adapt these commands if you decided to download and build the container in a different directory. (Skip this step if you'd rather start the containers directly yourself). 
@@ -81,7 +34,7 @@ Then, we create two bash scripts in `~/.local/bin` to make starting the containe
 ```bash
 echo "#! /bin/bash
 ## run wsi-analysis-ark container providing the ark-analysis toolbox
-[ -d "/mnt" ] && singularity \"\$@\" run --bind /mnt:/opt/ark-analysis/templates/drives --bind /:/opt/ark-analysis/templates/host $HOME/builds/wsi-analysis-ark/singularity/wsi_analysis_ark.sif || singularity run \"\$@\" --bind /:/opt/ark-analysis/templates/host $HOME/builds/wsi-analysis-ark/singularity/wsi_analysis_ark.sif" > ~/.local/bin/wsi-analysis-ark
+[ -d "/mnt" ] && apptainer \"\$@\" run --bind /mnt:/opt/ark-analysis/templates/drives --bind /:/opt/ark-analysis/templates/host $HOME/builds/wsi-analysis-ark/apptainer/wsi_analysis_ark.sif || apptainer run \"\$@\" --bind /:/opt/ark-analysis/templates/host $HOME/builds/wsi-analysis-ark/apptainer/wsi_analysis_ark.sif" > ~/.local/bin/wsi-analysis-ark
 ```
 
 Lastly, we make these two bash scripts executable
