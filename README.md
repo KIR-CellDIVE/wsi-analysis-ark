@@ -98,10 +98,10 @@ source ~/.profile
 
 ## Run ark-analysis toolbox
 
-If you have followed the installation step you should be able to start the `ark-analysis` toolbox now. If you are on `Windows` and you use `WSL`, first open `PowerShell` and enter the previously created WSL environment `Ubuntu` as the user `ubuntu` if you haven't already done so:
+If you have followed the installation step you should be able to start the `ark-analysis` toolbox now. If you are on `Windows` and you use `WSL`, first open `PowerShell` and enter the previously created WSL environment `Ubuntu_DIVEMAP` as the user `ubuntu` if you haven't already done so:
 
 ```bash
-wsl -d Ubuntu -u ubuntu
+wsl -d Ubuntu_DIVEMAP -u ubuntu
 ```
 
 Once you are in the `WSL` environment you can run start up the `ark-analysis` toolbox by typing
