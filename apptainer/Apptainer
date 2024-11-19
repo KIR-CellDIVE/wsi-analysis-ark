@@ -13,4 +13,4 @@ IncludeCmd: yes
     Version v0.0.1
 
 %help
-    This is a singularity container serving the ark-analysis toolbox (https://github.com/angelolab/ark-analysis)
+    This is a apptainer container serving the ark-analysis toolbox (https://github.com/angelolab/ark-analysis)
